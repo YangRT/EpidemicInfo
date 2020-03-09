@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorMain">#03A9F4</color>
+    <!--  确诊人数：0 -->
+    <color name="colorNumZero">#ffffff</color>
+    <!--  确诊人数：1-9 -->
+    <color name="colorNumLow">#FAEBD2</color>
+    <!--  确诊人数：10-99  -->
+    <color name="colorNumMid">#E9A289</color>
+    <!--  确诊人数：100-499  -->
+    <color name="colorNumHeight">#D56355</color>
+    <!--  确诊人数：500-999  -->
+    <color name="colorNumMany">#BB3937</color>
+    <!--  确诊人数：1000-10000  -->
+    <color name="colorNumMore">#772526</color>
+    <!--  确诊人数：>10000  -->
+    <color name="colorNumMost">#480f10</color>
+</resources>
