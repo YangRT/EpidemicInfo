@@ -1,8 +1,6 @@
-package com.yang.epidemicinfo.map
+package com.yang.epidemicinfo.mapview
 
 import android.graphics.RectF
-import com.yang.epidemicinfo.map.MapData
-import com.yang.epidemicinfo.map.PathParser
 import org.w3c.dom.Element
 import java.io.InputStream
 import javax.xml.parsers.DocumentBuilderFactory

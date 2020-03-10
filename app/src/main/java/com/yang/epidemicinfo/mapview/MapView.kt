@@ -1,4 +1,4 @@
-package com.yang.epidemicinfo.map
+package com.yang.epidemicinfo.mapview
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,10 +9,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
-import com.yang.epidemicinfo.R
-
-
-
 
 
 /**

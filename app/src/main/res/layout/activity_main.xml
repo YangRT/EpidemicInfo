@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.yang.epidemicinfo.map.MapView
+    <com.yang.epidemicinfo.mapview.MapView
         android:id="@+id/map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

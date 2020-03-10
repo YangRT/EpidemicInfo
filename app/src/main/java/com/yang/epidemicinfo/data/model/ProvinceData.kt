@@ -25,7 +25,7 @@ data class ProvinceData(
     val id: Int,
     val locationId: Int,
     val modifyTime: Long,
-    val `operator`: String,
+    val operator: String,
     val provinceId: String,
     val provinceName: String,
     val provinceShortName: String,

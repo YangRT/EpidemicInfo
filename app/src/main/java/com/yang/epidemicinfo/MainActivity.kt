@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.yang.epidemicinfo.data.network.EpidemicNetwork
-import com.yang.epidemicinfo.map.Dom2xml
-import com.yang.epidemicinfo.map.MapView
-import kotlinx.coroutines.Dispatchers
+import com.yang.epidemicinfo.mapview.Dom2xml
+import com.yang.epidemicinfo.mapview.MapView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import java.util.*
-import javax.security.auth.login.LoginException
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.yang.epidemicinfo.map
+package com.yang.epidemicinfo.mapview
 
 import android.graphics.Path
 
