@@ -1,6 +1,7 @@
 package com.yang.epidemicinfo.util
 
 import android.content.Context
+import android.util.Log
 import com.google.gson.Gson
 import com.yang.epidemicinfo.MyApplication
 import com.yang.epidemicinfo.R
@@ -37,8 +38,10 @@ fun <T> toJson(data: T):String{
 
 fun  <T> getDataFromJson(key:String,type: Type):T?{
     val data = getSaveData(key)
+    Log.e("FromJson","begin")
     if(data != null){
         val result:T = Gson().fromJson(data,type)
+        Log.e("FromJson","over")
         return result
     }
     return null

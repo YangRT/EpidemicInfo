@@ -4,6 +4,7 @@ import com.yang.epidemicinfo.data.model.ProvinceData
 import com.yang.epidemicinfo.data.model.ProvinceInfo
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -19,6 +20,6 @@ import retrofit2.http.Query
 
 interface GetProvinceInfoService {
 
-    @GET("/nCoV/api/area")
-    fun getProvinceData(@Query("province")where:String): Call<ProvinceInfo>
+    @GET("/data/getAreaStat/{area}")
+    fun getProvinceData(@Path("area")where:String):Call<List<ProvinceInfo>>
 }

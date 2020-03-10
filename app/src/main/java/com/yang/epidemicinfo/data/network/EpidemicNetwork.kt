@@ -13,7 +13,7 @@ import kotlin.coroutines.*
 class EpidemicNetwork {
 
     private val getProvinceDataService = ServiceCreator.createAboutKnowledge(GetProvinceDataService::class.java)
-    private val getProvinceInfoService = ServiceCreator.createAboutCountry(GetProvinceInfoService::class.java)
+    private val getProvinceInfoService = ServiceCreator.createAboutKnowledge(GetProvinceInfoService::class.java)
 
     suspend fun getProvinceData() = withContext(Dispatchers.IO){ getProvinceDataService.getProvinceData().await() }
     suspend fun getProvinceInfo(where:String) = withContext(Dispatchers.IO){ getProvinceInfoService.getProvinceData(where).await() }

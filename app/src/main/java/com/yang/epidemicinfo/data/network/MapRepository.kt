@@ -1,9 +1,9 @@
 package com.yang.epidemicinfo.data.network
 
+import android.util.Log
 import com.yang.epidemicinfo.data.db.MapDao
 import com.yang.epidemicinfo.data.model.ProvinceData
 import com.yang.epidemicinfo.data.model.ProvinceInfo
-import com.yang.epidemicinfo.data.model.ProvinceResult
 import com.yang.epidemicinfo.mapview.Map
 import com.yang.epidemicinfo.util.getSaveTime
 import kotlinx.coroutines.Dispatchers
@@ -24,8 +24,10 @@ class MapRepository(){
     private val mapDao = MapDao()
 
      suspend fun getCachedMap(where:String):Map{
+         Log.e("getMap","begin")
         var map = mapDao.getCachedMapInfo(where)
         if (map == null) {
+            Log.e("getMap","null")
             map = requestMap(where)
             saveMap(where,map)
         }
@@ -61,15 +63,15 @@ class MapRepository(){
         return data
     }
 
-    suspend fun getCachedProvinceInfo(where: String):List<ProvinceResult>{
+    suspend fun getCachedProvinceInfo(where: String):List<ProvinceInfo>{
         var info = mapDao.getCachedProvinceData(where)
         if (info == null){
             val response = mapDao.requestProvinceData(where)
-            info = response.results
+            info = response
             mapDao.cachedProvinceData(where,info)
         }else{
             val saveTime = getSaveTime(where)
-            var result:ProvinceInfo? = null
+            var result:List<ProvinceInfo>? = null
             if (saveTime != 0L && saveTime - System.currentTimeMillis() > 6*3600*1000){
                 try {
                     result = mapDao.requestProvinceData(where)
@@ -77,7 +79,7 @@ class MapRepository(){
                     e.printStackTrace()
                 }
                 if (result != null) {
-                    info = result.results
+                    info = result
                     mapDao.cachedProvinceData(where, info)
                 }
             }
@@ -85,10 +87,10 @@ class MapRepository(){
         return info
     }
 
-    suspend fun refreshProvinceInfo(where: String):List<ProvinceResult>{
+    suspend fun refreshProvinceInfo(where: String):List<ProvinceInfo>{
         val response = EpidemicNetwork.getInstance().getProvinceInfo(where)
-        val data = response.results
-        if (data.isNotEmpty() && getSaveTime("中国") < data[0].updateTime){
+        val data = response
+        if (data.isNotEmpty()){
             mapDao.cachedProvinceData("中国",data)
         }
         return data
