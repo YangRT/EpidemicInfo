@@ -1,4 +1,4 @@
-package com.yang.epidemicinfo.mapview
+package com.yang.epidemicinfo.customview.mapview
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -26,7 +26,7 @@ class MapView:View {
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init(context)
+        init()
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
@@ -73,7 +73,7 @@ class MapView:View {
     /**
      * 进行初始化
      */
-    private fun init(context: Context) {
+    private fun init() {
         mPaintText.color = Color.BLACK
         mPaintText.style = Paint.Style.FILL_AND_STROKE
         mPaintText.textSize = 12f
@@ -156,7 +156,7 @@ class MapView:View {
         }
         mapDataList.forEach {data ->
             run {
-                var rectF = RectF()
+                val rectF = RectF()
                 data.pathData.computeBounds(rectF, true)
                 if (data.name=="内蒙古" || data.name=="重庆" || data.name == "海南" || data.name == "云南" || data.name=="陕西" || data.name=="黑龙江"){
                     canvas.drawText(

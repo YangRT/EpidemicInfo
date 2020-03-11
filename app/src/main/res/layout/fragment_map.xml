@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/map_table"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        tools:context=".drawer.DrawerActivity">
+        <com.google.android.material.appbar.AppBarLayout
+            app:elevation="0dp"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.yang.epidemicinfo.customview.mapview.MapView
+                app:layout_scrollFlags="scroll"
+                android:id="@+id/map"
+                android:background="#F7F7F7"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+            <include layout="@layout/province_table_title"
+                app:layout_scrollFlags="noScroll"/>
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="#ffffff"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:id="@+id/map_table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

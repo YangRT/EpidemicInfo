@@ -11,13 +11,10 @@ import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yang.epidemicinfo.R
 import com.yang.epidemicinfo.data.model.BaseEpidemicInfo
 import com.yang.epidemicinfo.databinding.FragmentMapBinding
-import com.yang.epidemicinfo.mapview.MapView
 
 
 /**
@@ -35,8 +32,6 @@ class MapFragment:Fragment(),Observer<Any> {
     private lateinit var binding:FragmentMapBinding
     private lateinit var adapter:TableAdapter
     private lateinit var tableTitleView:LinearLayout
-    private lateinit var headView: LinearLayout
-    private lateinit var mapView:MapView
     private var viewModel: MapViewModel? = null
 
     override fun onCreateView(
@@ -54,17 +49,29 @@ class MapFragment:Fragment(),Observer<Any> {
         lifecycle.addObserver(viewModel())
         initView()
         viewModel().areaData.observe(this, Observer {
-            dataInsert(it)
+           dataInsert(it)
         })
         viewModel().map.observe(this, Observer {
-            mapView.mMapRectHeight = it.mapHeight
-            mapView.mMapRectWidth = it.mapWidth
-            mapView.mapDataList.clear()
-            mapView.mapDataList.addAll(it.mapDataList)
-            mapView.measure(mapView.measuredWidth,mapView.measuredHeight)
-            mapView.postInvalidate()
+            activity?.runOnUiThread {
+                Log.e("MapFragment",Thread.currentThread().name)
+                binding.map.mMapRectHeight = it.mapHeight
+                        binding.map.mMapRectWidth = it.mapWidth
+                binding.map.mapDataList.clear()
+                binding.map.mapDataList.addAll(it.mapDataList)
+                binding.map.measure(binding.map.measuredWidth,binding.map.measuredHeight)
+                binding.map.invalidate()
+                viewModel().getChinaData()
+            }
+
         })
-        viewModel().getChinaMapData("中国")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+            viewModel().getChinaMapData("中国")
+
+
     }
 
     private fun viewModel(): MapViewModel {
@@ -79,16 +86,12 @@ class MapFragment:Fragment(),Observer<Any> {
     }
 
     private fun initView(){
-        headView = LayoutInflater.from(context).inflate(R.layout.map,null) as LinearLayout
-        mapView = headView.findViewById(R.id.map)
-        tableTitleView = LayoutInflater.from(context).inflate(R.layout.province_table_title,null) as LinearLayout
+//        tableTitleView = LayoutInflater.from(context).inflate(R.layout.province_table_title,null) as LinearLayout
+//        val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,70)
+//        tableTitleView.layoutParams = lp
         adapter = TableAdapter(ArrayList())
-        adapter.addHeaderView(headView)
-        adapter.addHeaderView(tableTitleView)
+       // adapter.addHeaderView(tableTitleView)
         binding.mapTable.layoutManager = LinearLayoutManager(context)
-        binding.mapTable.addItemDecoration( DividerItemDecoration(getContext(),
-            DividerItemDecoration.VERTICAL)
-        )
         binding.mapTable.adapter = adapter
 
     }

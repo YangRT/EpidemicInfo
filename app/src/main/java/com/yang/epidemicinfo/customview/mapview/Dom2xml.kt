@@ -1,6 +1,7 @@
-package com.yang.epidemicinfo.mapview
+package com.yang.epidemicinfo.customview.mapview
 
 import android.graphics.RectF
+import com.yang.epidemicinfo.R
 import org.w3c.dom.Element
 import java.io.InputStream
 import javax.xml.parsers.DocumentBuilderFactory
@@ -58,7 +59,7 @@ class Dom2xml {
                 val strokeWidth = item.getAttribute("android:strokeWidth")
                 val pathData = item.getAttribute("android:pathData")
                 val path = PathParser.createPathFromPathData(pathData)
-                mapDataLists.add(MapData(name,strokeColor, strokeWidth, path))
+                mapDataLists.add(MapData(name,strokeColor, strokeWidth, path,false,R.color.colorMain))
                 //获取控件的宽高
                 val rect = RectF()
                 //获取到每个省份的边界

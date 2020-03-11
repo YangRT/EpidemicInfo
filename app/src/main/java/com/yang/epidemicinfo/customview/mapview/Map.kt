@@ -1,4 +1,4 @@
-package com.yang.epidemicinfo.mapview
+package com.yang.epidemicinfo.customview.mapview
 
 
 /**

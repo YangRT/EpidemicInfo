@@ -4,7 +4,7 @@ import android.util.Log
 import com.yang.epidemicinfo.data.db.MapDao
 import com.yang.epidemicinfo.data.model.ProvinceData
 import com.yang.epidemicinfo.data.model.ProvinceInfo
-import com.yang.epidemicinfo.mapview.Map
+import com.yang.epidemicinfo.customview.mapview.Map
 import com.yang.epidemicinfo.util.getSaveTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -25,7 +25,7 @@ class MapRepository(){
 
      suspend fun getCachedMap(where:String):Map{
          Log.e("getMap","begin")
-        var map = mapDao.getCachedMapInfo(where)
+        var map = withContext(Dispatchers.IO){mapDao.getCachedMapInfo(where)}
         if (map == null) {
             Log.e("getMap","null")
             map = requestMap(where)

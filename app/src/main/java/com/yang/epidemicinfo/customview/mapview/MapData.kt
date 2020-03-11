@@ -1,6 +1,7 @@
-package com.yang.epidemicinfo.mapview
+package com.yang.epidemicinfo.customview.mapview
 
 import android.graphics.Path
+import com.yang.epidemicinfo.R
 
 
 /**
@@ -17,8 +18,7 @@ class MapData(val name: String = "",
                    val strokeColor: String = "",
                    val strokeWidth: String = "",
                    val pathData: Path,
-                   var isSelect: Boolean = false){
-    var allFillColor:Int = 0
+                   var isSelect: Boolean = false,var allFillColor:Int = R.color.colorNumLow){
     var currentFillColor = 0
     var confirmedCount:Int = 0
     var currentConfirmedCount = 0

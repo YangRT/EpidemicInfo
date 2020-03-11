@@ -6,8 +6,8 @@ import com.yang.epidemicinfo.MyApplication
 import com.yang.epidemicinfo.data.model.ProvinceData
 import com.yang.epidemicinfo.data.model.ProvinceInfo
 import com.yang.epidemicinfo.data.network.EpidemicNetwork
-import com.yang.epidemicinfo.mapview.Dom2xml
-import com.yang.epidemicinfo.mapview.Map
+import com.yang.epidemicinfo.customview.mapview.Dom2xml
+import com.yang.epidemicinfo.customview.mapview.Map
 import com.yang.epidemicinfo.util.*
 import java.lang.reflect.Type
 

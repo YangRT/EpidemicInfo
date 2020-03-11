@@ -7,15 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yang.epidemicinfo.R
+import com.yang.epidemicinfo.data.db.MapDao
 import com.yang.epidemicinfo.data.model.BaseEpidemicInfo
-import com.yang.epidemicinfo.data.model.PageStatus
-import com.yang.epidemicinfo.data.model.ProvinceData
 import com.yang.epidemicinfo.data.network.MapRepository
-import com.yang.epidemicinfo.mapview.Map
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.zip
+import com.yang.epidemicinfo.customview.mapview.Map
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 
@@ -32,10 +28,6 @@ import kotlinx.coroutines.launch
 class MapViewModel:ViewModel(), LifecycleObserver {
 
 
-    var status = MutableLiveData<PageStatus>()
-
-    var refresh = MutableLiveData<Boolean>()
-
     var map = MutableLiveData<Map>()
 
 
@@ -43,53 +35,43 @@ class MapViewModel:ViewModel(), LifecycleObserver {
 
     init {
         areaData.value = ObservableArrayList()
-
     }
 
     fun getChinaMapData(where:String){
         launch({
-            val mapInfo = flow {
-                val result = MapRepository.getInstance().getCachedMap(where)
-                Log.e("MapViewModel","map success")
-                emit(result)
-            }
-            val provinceInfo = flow{
+            val mapInfo = MapDao().requestMapInfo("中国")
+            val provinceInfo = MapRepository.getInstance().getCachedChinaData()
+            val provinceDataMap = provinceInfo.associateBy { it.provinceShortName }
+                for (i in mapInfo.mapDataList.indices){
+                    provinceDataMap[mapInfo.mapDataList[i].name]?.let {
+                        mapInfo.mapDataList[i].confirmedCount = it.confirmedCount
+                        mapInfo.mapDataList[i].currentConfirmedCount = it.currentConfirmedCount
+                    }
+                }
+            setMapColor(mapInfo)
+            map.postValue(mapInfo)
+        },{
+            Log.e("MapViewModel","error:${it.message}")
+        })
+    }
+
+    fun getChinaData(){
+        launch({
                 val result = MapRepository.getInstance().getCachedChinaData()
-                Log.e("MapViewModel","provinceInfo success")
-                emit(result)
-            }
-            provinceInfo.map {
-                val result = ArrayList<BaseEpidemicInfo>()
-                it.forEach { data ->
+                val resultList = ArrayList<BaseEpidemicInfo>()
+                result.forEach { data ->
                     val item = BaseEpidemicInfo(BaseEpidemicInfo.PROVINCE)
                     item.area = data.provinceShortName
                     item.confirmedCount = data.confirmedCount
                     item.curedCount = data.curedCount
                     item.currentConfirmedCount = data.currentConfirmedCount
                     item.deadCount = data.deadCount
-                    result.add(item)
+                    resultList.add(item)
                 }
-                result
-            }.collect{
                 areaData.value?.clear()
-                areaData.value?.addAll(it)
+                areaData.value?.addAll(resultList)
                 areaData.postValue(areaData.value)
-            }
-            provinceInfo.zip(mapInfo){ data, map ->
-                val provinceDataMap = data.associateBy { it.provinceShortName }
-                for (i in map.mapDataList.indices){
-                    provinceDataMap[map.mapDataList[i].name]?.let {
-                        map.mapDataList[i].confirmedCount = it.confirmedCount
-                        map.mapDataList[i].currentConfirmedCount = it.currentConfirmedCount
-                    }
-                }
-                map
-            }.map {
-                setMapColor(it)
-                it
-            }.collect {
-                map.postValue(it)
-            }
+
         },{
             Log.e("MapViewModel","error:${it.message}")
         })
@@ -135,7 +117,8 @@ class MapViewModel:ViewModel(), LifecycleObserver {
                 setMapColor(it)
                 it
             }.collect {
-                map.postValue(it)
+                map.value = it
+                map.postValue(map.value)
             }
         },{
             Log.e("MapViewModel","error:${it.message}")
