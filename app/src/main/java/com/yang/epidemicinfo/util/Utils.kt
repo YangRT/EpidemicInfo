@@ -6,6 +6,8 @@ import com.google.gson.Gson
 import com.yang.epidemicinfo.MyApplication
 import com.yang.epidemicinfo.R
 import java.lang.reflect.Type
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun saveTime(time:Long,key:String){
     val sharedPreferences = MyApplication.context.getSharedPreferences(key, Context.MODE_PRIVATE)
@@ -83,4 +85,9 @@ fun getMapLocation(where:String):Int{
         "天津" -> result = R.raw.ic_tian_jin
     }
     return result
+}
+
+fun longToDate(time:Long):String{
+    val format = SimpleDateFormat("MM-dd HH:mm")
+    return format.format(Date(time))
 }

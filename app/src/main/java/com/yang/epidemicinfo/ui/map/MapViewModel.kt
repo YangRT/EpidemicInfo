@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.yang.epidemicinfo.R
 import com.yang.epidemicinfo.data.db.MapDao
 import com.yang.epidemicinfo.data.model.BaseEpidemicInfo
-import com.yang.epidemicinfo.data.network.MapRepository
+import com.yang.epidemicinfo.data.MapRepository
 import com.yang.epidemicinfo.customview.mapview.Map
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

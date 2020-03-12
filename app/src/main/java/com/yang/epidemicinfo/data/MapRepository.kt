@@ -1,10 +1,11 @@
-package com.yang.epidemicinfo.data.network
+package com.yang.epidemicinfo.data
 
 import android.util.Log
 import com.yang.epidemicinfo.data.db.MapDao
 import com.yang.epidemicinfo.data.model.ProvinceData
 import com.yang.epidemicinfo.data.model.ProvinceInfo
 import com.yang.epidemicinfo.customview.mapview.Map
+import com.yang.epidemicinfo.data.network.EpidemicNetwork
 import com.yang.epidemicinfo.util.getSaveTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -102,7 +103,8 @@ class MapRepository(){
             if (mapRepository == null) {
                 synchronized(EpidemicNetwork::class.java) {
                     if (mapRepository == null) {
-                        mapRepository = MapRepository()
+                        mapRepository =
+                            MapRepository()
                     }
                 }
             }

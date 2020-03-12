@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.yang.epidemicinfo.databinding.ActivityMainBinding
 import com.yang.epidemicinfo.ui.map.MapFragment
+import com.yang.epidemicinfo.ui.news.NewsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-        fragment = MapFragment()
+        fragment = NewsFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.container, fragment).commit()
 

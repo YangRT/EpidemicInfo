@@ -10,20 +10,17 @@ package com.yang.epidemicinfo.data.model
  *
  * @create: 2020-03-09 18:14
  **/
-//http://www.dzyong.top:3005/yiqing/news  参数：pageNum pageSize
+
 data class NewsInfo(
-    val data: List<NewsData>,
-    val msg: String
+    val results: List<NewsResult>,
+    val success: Boolean
 )
 
-data class NewsData(
-    val createTime: String,
-    val id: Int,
+data class NewsResult(
     val infoSource: String,
-    val modifyTime: String,
+    val provinceId: String,
     val provinceName: String,
-    val pubDate: String,
-    val pubDateStr: String,
+    val pubDate: Long,
     val sourceUrl: String,
     val summary: String,
     val title: String

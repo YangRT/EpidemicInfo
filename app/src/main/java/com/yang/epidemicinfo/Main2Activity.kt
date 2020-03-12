@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yang.epidemicinfo.MyApplication.Companion.context
 import com.yang.epidemicinfo.data.model.BaseEpidemicInfo
-import com.yang.epidemicinfo.data.network.MapRepository
+import com.yang.epidemicinfo.data.MapRepository
 import com.yang.epidemicinfo.databinding.ActivityMain2Binding
 import com.yang.epidemicinfo.customview.mapview.Dom2xml
 import com.yang.epidemicinfo.customview.mapview.Map

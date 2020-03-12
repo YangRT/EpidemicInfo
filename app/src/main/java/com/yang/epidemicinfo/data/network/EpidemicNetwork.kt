@@ -1,8 +1,10 @@
 package com.yang.epidemicinfo.data.network
 
 import android.util.Log
+import com.yang.epidemicinfo.data.network.api.GetNewsDataService
 import com.yang.epidemicinfo.data.network.api.GetProvinceDataService
 import com.yang.epidemicinfo.data.network.api.GetProvinceInfoService
+import com.yang.epidemicinfo.data.network.api.GetRumorDataService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
@@ -14,9 +16,14 @@ class EpidemicNetwork {
 
     private val getProvinceDataService = ServiceCreator.createAboutKnowledge(GetProvinceDataService::class.java)
     private val getProvinceInfoService = ServiceCreator.createAboutKnowledge(GetProvinceInfoService::class.java)
+    private val getNewsDataService = ServiceCreator.createAboutCountry(GetNewsDataService::class.java)
+    private val getRumorDataService = ServiceCreator.createAboutCountry(GetRumorDataService::class.java)
 
     suspend fun getProvinceData() = withContext(Dispatchers.IO){ getProvinceDataService.getProvinceData().await() }
     suspend fun getProvinceInfo(where:String) = withContext(Dispatchers.IO){ getProvinceInfoService.getProvinceData(where).await() }
+    suspend fun getNewsData(page:Int) = withContext(Dispatchers.IO){ getNewsDataService.getNewsData(page,20).await() }
+    suspend fun getRumorsData(page: Int) = withContext(Dispatchers.IO){ getRumorDataService.getNewsData(page,20).await() }
+
 
     private suspend fun <T> Call<T>.await(): T {
         //suspendCoroutine 这个方法并不是帮我们启动协程的，它运行在协程当中

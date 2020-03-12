@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.yang.epidemicinfo.R
 import com.yang.epidemicinfo.databinding.ActivityHomeBinding
 import com.yang.epidemicinfo.ui.map.MapFragment
+import com.yang.epidemicinfo.ui.news.NewsFragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -20,7 +21,7 @@ class HomeActivity : AppCompatActivity() {
         supportActionBar?.title = ""
         binding.toolbarTitle.text = "疫情地图"
         binding.toolbar.setTitleTextAppearance(this,R.style.Toolbar_TitleText_low)
-        fragment = MapFragment()
+        fragment = NewsFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.fragment, fragment).commit()
     }
