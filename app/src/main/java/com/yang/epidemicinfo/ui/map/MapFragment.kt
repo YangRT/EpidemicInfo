@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.yang.epidemicinfo.MyApplication.Companion.context
 import com.yang.epidemicinfo.R
 import com.yang.epidemicinfo.data.model.BaseEpidemicInfo
 import com.yang.epidemicinfo.databinding.FragmentMapBinding
@@ -49,7 +50,7 @@ class MapFragment:Fragment(),Observer<Any> {
         lifecycle.addObserver(viewModel())
         initView()
         viewModel().areaData.observe(this, Observer {
-           dataInsert(it)
+            dataInsert(it)
         })
         viewModel().map.observe(this, Observer {
             activity?.runOnUiThread {
@@ -60,17 +61,17 @@ class MapFragment:Fragment(),Observer<Any> {
                 binding.map.mapDataList.addAll(it.mapDataList)
                 binding.map.measure(binding.map.measuredWidth,binding.map.measuredHeight)
                 binding.map.invalidate()
-                viewModel().getChinaData()
             }
 
         })
-
     }
+
+
 
     override fun onResume() {
         super.onResume()
-            viewModel().getChinaMapData("中国")
-
+        viewModel().getChinaData()
+        viewModel().getChinaMapData("中国")
 
     }
 

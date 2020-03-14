@@ -98,6 +98,10 @@ class NewsFragment:Fragment(),Observer<Any>{
         adapter.addHeaderView(headView)
         adapter.loadMoreModule?.isEnableLoadMoreIfNotFullPage = false
         binding.articleRecyclerView.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel().getCacheData()
     }
 

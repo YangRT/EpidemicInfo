@@ -100,6 +100,10 @@ class RumorFragment: Fragment(), Observer<Any> {
         adapter.loadMoreModule?.isEnableLoadMoreIfNotFullPage = false
         binding.articleRecyclerView.adapter = adapter
         binding.articleRecyclerView.addItemDecoration(RumorItemDecoration(R.drawable.rumor))
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel().getCacheData()
     }
 
