@@ -31,7 +31,7 @@ class RumorItemDecoration(val bitmapId:Int):RecyclerView.ItemDecoration() {
         for (i in 0 until childCount){
             val child = parent[i]
             val x = child.width/3f*2
-            val y = child.bottom-child.height/3f
+            val y = child.top+1f
             c.drawBitmap(bitmap,x,y,mPaint)
         }
     }

@@ -11,7 +11,7 @@ package com.yang.epidemicinfo.data.model
  * @create: 2020-03-09 18:01
  **/
 // http://49.232.173.220:3001/data/getStatisticsService
-data class WordInfo(
+data class WorldInfo(
     val abroadRemark: String,
     val confirmedCount: Int,
     val confirmedIncr: Int,

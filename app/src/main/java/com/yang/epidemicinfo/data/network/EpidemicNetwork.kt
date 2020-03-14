@@ -1,10 +1,7 @@
 package com.yang.epidemicinfo.data.network
 
 import android.util.Log
-import com.yang.epidemicinfo.data.network.api.GetNewsDataService
-import com.yang.epidemicinfo.data.network.api.GetProvinceDataService
-import com.yang.epidemicinfo.data.network.api.GetProvinceInfoService
-import com.yang.epidemicinfo.data.network.api.GetRumorDataService
+import com.yang.epidemicinfo.data.network.api.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
@@ -16,14 +13,19 @@ class EpidemicNetwork {
 
     private val getProvinceDataService = ServiceCreator.createAboutKnowledge(GetProvinceDataService::class.java)
     private val getProvinceInfoService = ServiceCreator.createAboutKnowledge(GetProvinceInfoService::class.java)
+    private val getWorldInfoService = ServiceCreator.createAboutKnowledge(GetWorldInfoService::class.java)
     private val getNewsDataService = ServiceCreator.createAboutCountry(GetNewsDataService::class.java)
     private val getRumorDataService = ServiceCreator.createAboutCountry(GetRumorDataService::class.java)
+    private val getProtectInfoService = ServiceCreator.createAboutKnowledge(GetProtectInfoService::class.java)
+    private val getWikiInfoService = ServiceCreator.createAboutKnowledge(GetWikiInfoService::class.java)
 
     suspend fun getProvinceData() = withContext(Dispatchers.IO){ getProvinceDataService.getProvinceData().await() }
     suspend fun getProvinceInfo(where:String) = withContext(Dispatchers.IO){ getProvinceInfoService.getProvinceData(where).await() }
     suspend fun getNewsData(page:Int) = withContext(Dispatchers.IO){ getNewsDataService.getNewsData(page,20).await() }
     suspend fun getRumorsData(page: Int) = withContext(Dispatchers.IO){ getRumorDataService.getRumorData(page,20).await() }
-
+    suspend fun getWorldInfo() = withContext(Dispatchers.IO){ getWorldInfoService.getWorldInfo().await() }
+    suspend fun getProjectInfo() = withContext(Dispatchers.IO){ getProtectInfoService.getProtectInfo().await() }
+    suspend fun getWikiInfo() = withContext(Dispatchers.IO){ getWikiInfoService.getWikiInfo().await() }
 
     private suspend fun <T> Call<T>.await(): T {
         //suspendCoroutine 这个方法并不是帮我们启动协程的，它运行在协程当中

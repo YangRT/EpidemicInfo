@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    android:layout_margin="10dp"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/wiki_pic"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent=".35"
+        android:layout_width="90dp"
+        android:layout_height="120dp"/>
+    <TextView
+        android:text="日常防护要到位"
+        android:layout_marginStart="14dp"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:id="@+id/wiki_title"
+        app:layout_constraintWidth_percent=".50"
+        app:layout_constraintTop_toTopOf="@id/wiki_pic"
+        app:layout_constraintStart_toEndOf="@id/wiki_pic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="8dp"
+        android:text="新型冠状病毒肺炎流行，外卖还能吃吗？买不到消毒液家里消毒用什么替代？"
+        app:layout_constraintStart_toStartOf="@id/wiki_title"
+        app:layout_constraintTop_toBottomOf="@id/wiki_title"
+        app:layout_constraintWidth_percent=".66"
+        android:id="@+id/wiki_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        app:layout_constraintBottom_toBottomOf="@id/wiki_pic"
+        app:layout_constraintEnd_toEndOf="@id/wiki_description"
+        android:textColor="@color/colorAccent"
+        android:text="查看详情"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
