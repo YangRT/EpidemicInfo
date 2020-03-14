@@ -31,7 +31,7 @@ class RumorViewModel: ViewModel(), LifecycleObserver {
 
     var refresh = MutableLiveData<Boolean>()
 
-    lateinit var repository:RumorRepository
+    var repository:RumorRepository
 
     var status = MutableLiveData<PageStatus>()
 
@@ -42,6 +42,7 @@ class RumorViewModel: ViewModel(), LifecycleObserver {
     init {
         data.value = ObservableArrayList()
         status.value = PageStatus.LOADING
+        repository = RumorRepository()
     }
 
     fun getCacheData(){
@@ -51,6 +52,8 @@ class RumorViewModel: ViewModel(), LifecycleObserver {
             dealWithResult(result)
             if (repository.isNeedToUpdate()){
                 requestData()
+            }else{
+                isFirst = false
             }
         },{
             Log.e("BaseViewModel",it.message)

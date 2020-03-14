@@ -22,7 +22,7 @@ class EpidemicNetwork {
     suspend fun getProvinceData() = withContext(Dispatchers.IO){ getProvinceDataService.getProvinceData().await() }
     suspend fun getProvinceInfo(where:String) = withContext(Dispatchers.IO){ getProvinceInfoService.getProvinceData(where).await() }
     suspend fun getNewsData(page:Int) = withContext(Dispatchers.IO){ getNewsDataService.getNewsData(page,20).await() }
-    suspend fun getRumorsData(page: Int) = withContext(Dispatchers.IO){ getRumorDataService.getNewsData(page,20).await() }
+    suspend fun getRumorsData(page: Int) = withContext(Dispatchers.IO){ getRumorDataService.getRumorData(page,20).await() }
 
 
     private suspend fun <T> Call<T>.await(): T {

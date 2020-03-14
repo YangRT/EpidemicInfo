@@ -47,7 +47,7 @@ class InfoDao {
     }
 
     private fun getRumorsClass(): Type {
-        return object : TypeToken<List<NewsResult>>(){}.type
+        return object : TypeToken<List<RumorsResult>>(){}.type
     }
 
 }

@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="50dp">
     <TextView
-        android:background="@drawable/line2"
-        android:paddingLeft="8dp"
+
+        android:paddingLeft="78dp"
         android:layout_marginLeft="90dp"
         android:text="实时播报"
         android:layout_gravity="center_vertical"
@@ -16,9 +16,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
     <ImageView
-        android:layout_marginLeft="88dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/time"
+        android:layout_marginLeft="69.5dp"
         android:layout_gravity="center_vertical"
-        android:background="@color/colorAccent"
-        android:layout_width="4dp"
-        android:layout_height="18dp"/>
+        android:layout_width="42dp"
+        android:layout_height="50dp"/>
 </FrameLayout>

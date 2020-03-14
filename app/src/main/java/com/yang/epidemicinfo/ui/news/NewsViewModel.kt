@@ -51,6 +51,8 @@ class NewsViewModel: ViewModel(), LifecycleObserver {
             dealWithResult(result)
             if (repository.isNeedToUpdate()){
                 requestData()
+            }else{
+                isFirst = false
             }
         },{
             Log.e("BaseViewModel",it.message)

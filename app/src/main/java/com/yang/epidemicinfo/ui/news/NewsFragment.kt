@@ -82,7 +82,7 @@ class NewsFragment:Fragment(),Observer<Any>{
     private fun init(){
         headView = LayoutInflater.from(context).inflate(R.layout.news_title,null) as FrameLayout
         val lp = FrameLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,80)
-        lp.topMargin = 10
+        lp.topMargin = 15
         headView.layoutParams = lp
         binding.articleRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.mainPageRefreshLayout.setOnRefreshListener {

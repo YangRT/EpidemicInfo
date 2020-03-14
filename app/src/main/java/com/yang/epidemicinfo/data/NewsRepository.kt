@@ -1,5 +1,6 @@
 package com.yang.epidemicinfo.data
 
+import android.util.Log
 import com.yang.epidemicinfo.data.db.InfoDao
 import com.yang.epidemicinfo.data.model.NewsResult
 import com.yang.epidemicinfo.data.model.PageResult
@@ -39,6 +40,9 @@ class NewsRepository {
             result.isEmpty = it.isEmpty()
             result.isFromCache = true
             result.isFirst = true
+            if (!isNeedToUpdate()){
+                pageNum = 2
+            }
         }
         return result
     }
@@ -58,7 +62,8 @@ class NewsRepository {
         return load()
     }
 
-    suspend fun load():PageResult<List<NewsResult>>{
+    private suspend fun load():PageResult<List<NewsResult>>{
+        Log.e("News","$pageNum")
         val result = PageResult<List<NewsResult>>()
         val response = EpidemicNetwork.getInstance().getNewsData(pageNum)
         pageNum = if(isRefreshing){2}else{pageNum+1}

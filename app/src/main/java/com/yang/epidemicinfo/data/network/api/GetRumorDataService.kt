@@ -20,5 +20,5 @@ import retrofit2.http.Query
 interface GetRumorDataService {
 
     @GET("/nCoV/api/rumors")
-    fun getNewsData(@Query("page")page:Int, @Query("num")num:Int): Call<RumorsInfo>
+    fun getRumorData(@Query("page")page:Int, @Query("num")num:Int): Call<RumorsInfo>
 }

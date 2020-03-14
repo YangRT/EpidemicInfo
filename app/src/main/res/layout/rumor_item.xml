@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:background="@drawable/rumor_background"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/rumor_title"
+        android:layout_gravity="center_horizontal"
+        android:textSize="22sp"
+        android:text="紫外线消毒灯能杀灭新冠病毒?"
+        android:maxWidth="300dp"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@drawable/rumor_body"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/rumor_main"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:text="国家卫健委：冠状病毒对紫外线敏感"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/rumor_body"
+            android:text="在国家卫健委印发的《新型冠状病毒感染的肺炎诊疗方案（试行第五版）》中提到「冠状病毒对紫外线和热敏感，大部分消毒剂可有效灭活病毒。」紫外线消毒灯要严格按照说明书的要求使用。且人和宠物都要离开正在消毒的房间，以免对皮肤和眼睛造成损伤。"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </LinearLayout>
